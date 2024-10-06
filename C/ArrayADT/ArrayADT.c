@@ -297,7 +297,7 @@ int popArray(Array *arrayADT) {
 // Remove an element from the array given an index
 int removeArray(Array *arrayADT, unsigned int index) {
     if (!arrayADT) {
-        printf("Error: Invalid operation. Cannot remove from an empty ArrayADT.\n");
+        printf("Error: Invalid operation. Cannot remove from a NULL ArrayADT.\n");
         return ERROR_VALUE;
     }
 
@@ -309,6 +309,28 @@ int removeArray(Array *arrayADT, unsigned int index) {
     int removedValue = arrayADT->_items[index];
 
     for (unsigned int i = index; i < arrayADT->_length - 1; ++i) {
+        arrayADT->_items[i] = arrayADT->_items[i + 1];
+    }
+    arrayADT->_length--;
+
+    return removedValue;
+}
+
+// Remove an element from the array given an value (first occurence)
+unsigned int removeValueFromArray(Array *arrayADT, int value) {
+    if (!arrayADT) {
+        printf("Error: Invalid operation. Cannot remove from a NULL ArrayADT.\n");
+        return ERROR_VALUE;
+    }
+
+    unsigned int searchValueIndex = linearSearchArray(arrayADT, value);
+    if (searchValueIndex == ERROR_VALUE) {
+        printf("Error: Invalid operation. No %d exists in the ArrayADT.\n", value);
+        return ERROR_VALUE;
+    }
+
+    int removedValue = arrayADT->_items[searchValueIndex];
+    for (unsigned int i = searchValueIndex; i < arrayADT->_length - 1; ++i) {
         arrayADT->_items[i] = arrayADT->_items[i + 1];
     }
     arrayADT->_length--;
