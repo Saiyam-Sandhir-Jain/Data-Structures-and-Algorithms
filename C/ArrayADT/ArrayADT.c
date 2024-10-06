@@ -338,6 +338,23 @@ unsigned int removeValueFromArray(Array *arrayADT, int value) {
     return removedValue;
 }
 
+// Linear Serach an element in the Array
+unsigned int linearSearchArray(Array *arrayADT, int value) {
+    if (!arrayADT) {
+        printf("Error: Invalid operaion. Cannot search through a NULL ArrayADT.\n");
+        return ERROR_VALUE;
+    }
+
+    for (unsigned int i = 0; i < arrayADT->_length; ++i) {
+        if (arrayADT->_items[i] == value) {
+            return i; // Return index when element found
+        }
+    }
+
+    // Return ERROR_VALUE when element not found
+    return ERROR_VALUE;
+}
+
 /* ########## DESTRUCTOR ########## */
 
 void freeArray(Array **arrayADT) {
