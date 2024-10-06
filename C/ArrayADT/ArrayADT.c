@@ -120,7 +120,7 @@ Array *copyArray(int arrayC[], unsigned int size, unsigned int length) {
     }
 
     // Initialize items with elemets from array
-    for (int i = 0; i < length; ++i) {
+    for (unsigned int i = 0; i < length; ++i) {
         arrayADT->_items[i] = arrayC[i];
     }
     arrayADT->_size = size;      // Initialize size with 'size'
@@ -129,3 +129,32 @@ Array *copyArray(int arrayC[], unsigned int size, unsigned int length) {
     return arrayADT;
 }
 
+// ArrayADT copy constructor
+Array *copyArrayADT(Array *arrayADT, unsigned int length) {
+    // Length decides how many elements need to be copied
+
+    if (!arrayADT)
+        return NULL;
+
+    // Error is returned when number of elemets in arrayADT items is less than number of elements to be copied
+    if (arrayADT->_length < length) {
+        printf("Error: Length is out of ArrayADT bounds.\n");
+        return NULL;
+    }
+
+    Array *copiedArrayADT = (Array *)malloc(sizeof(Array));
+    if (!copiedArrayADT) {
+        printf("Error: Error occured during ArrayADT creation.\n");
+        return NULL;
+    }
+
+    copiedArrayADT->_items = (int *)malloc(arrayADT->_size * sizeof(int));
+    // Initialize copiedArrayADT items with elements from arrayADT items
+    for (unsigned int i = 0; i < length; ++i) {
+        copiedArrayADT->_items[i] = arrayADT->_items[i];
+    }
+    copiedArrayADT->_size = arrayADT->_size;  // Initialize copiedArrayADT size with arrayADT size
+    copiedArrayADT->_length = length;         // Initialize copiedArrayADT length with length
+
+    return copiedArrayADT;
+}
