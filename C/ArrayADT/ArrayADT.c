@@ -183,6 +183,53 @@ void displayArray(Array *arrayADT) {
     }
 }
 
+// Check if array is full
+bool isFull(Array *arrayADT) {
+    if (!arrayADT) {
+        printf("Error: Invalid operation. Cannot check a NULL ArrayADT.\n");
+        return false;
+    }
+
+    // Array if full when length is equal to size
+    if (arrayADT->_length == arrayADT->_size)
+        return true;
+
+    return false;
+}
+
+// Check if array is empty
+bool isEmpty(Array *arrayADT) {
+    if (!arrayADT) {
+        printf("Error: Invalid operation. Cannot check a NULL ArrayADT.\n");
+        return false;
+    }
+
+    // Array is empty if its length is 0
+    if (arrayADT->_length == 0) {
+        return true;
+    }
+
+    return false;
+} 
+
+// Append an element to the array
+void appendArray(Array *arrayADT, int value) {
+    if (!arrayADT) {
+        printf("Error: Invalid operation. Cannot append to NULL ArrayADT.\n");
+        return;
+    }
+
+    if (isFull(arrayADT)) {
+        printf("Error: Array overflow.\n");
+        return;
+    }
+
+    arrayADT->_items[arrayADT->_length] = value;
+    arrayADT->_length++; 
+}
+
+
+
 /* ########## DESTRUCTOR ########## */
 
 void freeArray(Array **arrayADT) {
