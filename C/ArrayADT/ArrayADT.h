@@ -1,6 +1,8 @@
 #ifndef ARRAYADT_H
 #define ARRAYADT_H
 
+#include <stdbool.h>
+
 // ArrayADT Structure
 typedef struct ArrayADT {
     int *_items;
