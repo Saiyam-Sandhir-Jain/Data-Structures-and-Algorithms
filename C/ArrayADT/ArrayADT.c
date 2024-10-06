@@ -228,7 +228,27 @@ void appendArray(Array *arrayADT, int value) {
     arrayADT->_length++; 
 }
 
+// Extend an array by appending elements from other array
+void extendArray(Array *arrayADT, Array *otherArrayADT) {
+    if (!arrayADT) {
+        printf("Error: Invalid operation. Cannot extend a NULL ArrayADT.\n");
+        return;
+    }
 
+    if (!otherArrayADT) {
+        printf("Error: Invalid operation. Cannot extend from a NULL ArrayADT.\n");
+    }
+
+    // Append elements of the other array untill the original array is filled or 
+    // all the elements from the other array are appended
+    unsigned int arrayADTLength = arrayADT->_length;
+    unsigned int arrayADTSize = arrayADT->_size;
+    unsigned int otherArrayADTLength = otherArrayADT->_length;
+    for (unsigned int i = arrayADTLength; i < arrayADTSize || i - arrayADTLength < otherArrayADTLength; ++i) {
+        arrayADT->_items[i] = otherArrayADT->_items[i - arrayADTLength];
+        arrayADT->_length++;
+    }
+}
 
 /* ########## DESTRUCTOR ########## */
 
