@@ -165,6 +165,24 @@ int getArrayElement(Array *arrayADT, unsigned int index) {
     return ERROR_VALUE;
 }
 
+// Display all the elements in the array
+void displayArray(Array *arrayADT) {
+    if (!arrayADT) {
+        printf("Error: Invalid operation. Cannot display a NULL ArrayADT.\n");
+        return;
+    }
+
+    // When array is empty
+    if (!arrayADT->_items && arrayADT->_size == 0 && arrayADT->_length == 0) {
+        printf("Array is empty.\n");
+        return;
+    }
+
+    for (unsigned int i = 0; i < arrayADT->_length; ++i) {
+        printf("|%d| ", arrayADT->_items[i]);
+    }
+}
+
 /* ########## DESTRUCTOR ########## */
 
 void freeArray(Array **arrayADT) {
