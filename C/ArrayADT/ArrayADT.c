@@ -83,3 +83,49 @@ Array *createArrayWithSize(unsigned int size) {
 
     return arrayADT; 
 }
+
+// Construct an ArrayADT using an array
+Array *copyArray(int arrayC[], unsigned int size, unsigned int length) {
+    // Size of the ArrayADT remains same are size of the array
+    // Length decides how many elements need to be copied
+
+    if (length > size) {
+        printf("Error: ArrayADT length cannot be greater than size.\n");
+        return NULL;
+    }
+
+    if (!arrayC && size > 0) {
+        printf("Error: NULL array cannot have a non-zero size.\n");
+        return NULL;
+    }
+
+    Array *arrayADT = (Array *)malloc(sizeof(Array));
+    if (!arrayADT) {
+        printf("Error: Error occured during ArrayADT creation.\n");
+        return NULL;
+    }
+
+    if (!arrayC) {
+        arrayADT->_items = NULL; // Initialize items with NULL
+        arrayADT->_size = 0;     // Initialize size with 0
+        arrayADT->_length = 0;   // Initalize length with 0
+
+        return arrayADT;
+    }
+
+    arrayADT->_items = (int *)malloc(size * sizeof(int));
+    if (!arrayADT->_items) {
+        printf("Error: Error occured during array creation.\n");
+        return NULL;
+    }
+
+    // Initialize items with elemets from array
+    for (int i = 0; i < length; ++i) {
+        arrayADT->_items[i] = arrayC[i];
+    }
+    arrayADT->_size = size;      // Initialize size with 'size'
+    arrayADT->_length = length;  // Initialize length with 'length'
+
+    return arrayADT;
+}
+

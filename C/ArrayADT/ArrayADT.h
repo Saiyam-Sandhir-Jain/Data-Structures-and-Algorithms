@@ -15,7 +15,7 @@ unsigned int getArrayLength(Array *arrayADT); // Get '_length' attribute of Arra
 // ArrayADT Constructors
 Array *createDefaultArray(); // Array Default Constructor
 Array *createArrayWithSize(unsigned int size); // Construct Array with 'size' parameter
-Array *copyArray(int arrayC[], unsigned int size); // Construct Array with 'arrayC' and 'size' parameters
+Array *copyArray(int arrayC[], unsigned int size, unsigned int length); // Construct Array with 'arrayC', 'size' and 'length' parameters
 Array *copyArrayADT(Array *arrayADT); // Array Copy Constructor
 
 // Operations
