@@ -237,6 +237,7 @@ void extendArray(Array *arrayADT, Array *otherArrayADT) {
 
     if (!otherArrayADT) {
         printf("Error: Invalid operation. Cannot extend from a NULL ArrayADT.\n");
+        return;
     }
 
     // Append elements of the other array untill the original array is filled or 
@@ -248,6 +249,31 @@ void extendArray(Array *arrayADT, Array *otherArrayADT) {
         arrayADT->_items[i] = otherArrayADT->_items[i - arrayADTLength];
         arrayADT->_length++;
     }
+}
+
+// Insert an element at an index in the Array.
+void insertArray(Array *arrayADT, unsigned int index, int value) {
+    if (!arrayADT) {
+        printf("Error: Invalid operation. Cannot insert to a NULL ArrayADT.\n");
+        return;
+    }
+
+    if (isFull(arrayADT)) {
+        printf("Error: Invalid operation. Cannot insert to a full ArrayADT.\n");
+        return;
+    }
+
+    if (index >= arrayADT->_length) {
+        printf("Error: Invalid operation. Index out of ArrayADT bounds.\n");
+        return;
+    }
+
+    // Right shifting the elements
+    for (unsigned int i = arrayADT->_length; i > index; --i) {
+        arrayADT->_items[i] = arrayADT->_items[i - 1];
+    }
+
+    arrayADT->_items[index] = value;
 }
 
 /* ########## DESTRUCTOR ########## */
