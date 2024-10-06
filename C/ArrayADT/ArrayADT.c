@@ -276,6 +276,7 @@ void insertArray(Array *arrayADT, unsigned int index, int value) {
     arrayADT->_items[index] = value;
 }
 
+// Pop the last element from the array
 int popArray(Array *arrayADT) {
     if (!arrayADT) {
         printf("Error: Invalid operation. Cannot pop from NULL ArrayADT.\n");
@@ -287,9 +288,32 @@ int popArray(Array *arrayADT) {
         return ERROR_VALUE;
     }
 
+    // Decrease length by 1 is equalivalent to removing an element from the end
     arrayADT->_length--;
 
-    return arrayADT->_items[arrayADT->_length + 1];
+    return arrayADT->_items[arrayADT->_length];
+}
+
+// Remove an element from the array given an index
+int removeArray(Array *arrayADT, unsigned int index) {
+    if (!arrayADT) {
+        printf("Error: Invalid operation. Cannot remove from an empty ArrayADT.\n");
+        return ERROR_VALUE;
+    }
+
+    if (index >= arrayADT->_length) {
+        printf("Error: Inalid operation. Index out of ArrayADT bounds.\n");
+        return ERROR_VALUE;
+    }
+
+    int removedValue = arrayADT->_items[index];
+
+    for (unsigned int i = index; i < arrayADT->_length - 1; ++i) {
+        arrayADT->_items[i] = arrayADT->_items[i + 1];
+    }
+    arrayADT->_length--;
+
+    return removedValue;
 }
 
 /* ########## DESTRUCTOR ########## */
