@@ -276,6 +276,22 @@ void insertArray(Array *arrayADT, unsigned int index, int value) {
     arrayADT->_items[index] = value;
 }
 
+int popArray(Array *arrayADT) {
+    if (!arrayADT) {
+        printf("Error: Invalid operation. Cannot pop from NULL ArrayADT.\n");
+        return ERROR_VALUE;
+    }
+
+    if (isEmpty(arrayADT)) {
+        printf("Error: Invalid opeartion. Cannot pop from an empty ArrayADT.\n");
+        return ERROR_VALUE;
+    }
+
+    arrayADT->_length--;
+
+    return arrayADT->_items[arrayADT->_length + 1];
+}
+
 /* ########## DESTRUCTOR ########## */
 
 void freeArray(Array **arrayADT) {
