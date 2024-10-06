@@ -28,7 +28,7 @@ int popArray(Array *arrayADT);
 int removeArray(Array *arrayADT, unsigned int index);
 unsigned int removeValueFromArray(Array *arrayADT, int value);
 unsigned int linearSearchArray(Array *arrayADT, int value);
-void resizeArray(Array **arrayADT, unsigned int newSize);
+void resizeArray(Array *arrayADT, unsigned int newSize);
 bool isFull(Array *arrayADT);
 bool isEmpty(Array *arrayADT);
 

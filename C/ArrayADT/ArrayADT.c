@@ -355,6 +355,35 @@ unsigned int linearSearchArray(Array *arrayADT, int value) {
     return ERROR_VALUE;
 }
 
+// Resize the Array
+void resizeArray(Array *arrayADT, unsigned int newSize) {
+    if (!arrayADT || !arrayADT) {
+        printf("Invalid operation. Cannot resize a NULL ArrayADT.\n");
+        return;
+    }
+
+    Array *temp;
+
+    if (!arrayADT->_items && arrayADT->_length == 0 && arrayADT->_size == 0) {
+        temp = (int *)malloc(newSize * sizeof(int));
+
+    } else {
+        temp = (int *)realloc(arrayADT->_items, newSize);
+    }
+
+    if (!temp && newSize != 0) {
+        printf("Error: Error occured during array resizing.\n");
+        return;
+    }
+
+    free(arrayADT->_items);
+    arrayADT->_items = temp;             // Set items to temp
+    arrayADT->_size = newSize;           // Set size to newSize 
+    if (newSize < arrayADT->_length) {
+        arrayADT->_length = newSize;     // Set length to newSize
+    }
+}
+
 /* ########## DESTRUCTOR ########## */
 
 void freeArray(Array **arrayADT) {
