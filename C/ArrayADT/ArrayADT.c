@@ -6,6 +6,8 @@
 
 #define ERROR_VALUE INT_MAX  // Constant for error values
 
+/* ########## PROPERTIES ########## */
+
 // Get the size of the array
 unsigned int getArraySize(Array *arrayADT) {
     if (arrayADT)
@@ -26,18 +28,7 @@ unsigned int getArrayLength(Array *arrayADT) {
     return ERROR_VALUE;
 }
 
-// Get an element from the array
-int getArrayElement(Array *arrayADT, unsigned int index) {
-    if (arrayADT && index < arrayADT->_length)
-        return arrayADT->_items[index];
-
-    if (!arrayADT) // NULL pointer is passed
-        printf("Error: Cannot get element from NULL ArrayADT.\n");
-    else if (index >= arrayADT->_length) // Index is out of array bounds
-        printf("Error: Index out of ArrayADT bounds.\n");
-
-    return ERROR_VALUE;
-}
+/* ########## CONSTRUCTORS ########## */
 
 // Constructor to create a default (empty) array
 Array *createDefaultArray() {
@@ -157,4 +148,39 @@ Array *copyArrayADT(Array *arrayADT, unsigned int length) {
     copiedArrayADT->_length = length;         // Initialize copiedArrayADT length with length
 
     return copiedArrayADT;
+}
+
+/* ########## OPERATIONS ########## */
+
+// Get an element from the array
+int getArrayElement(Array *arrayADT, unsigned int index) {
+    if (arrayADT && index < arrayADT->_length)
+        return arrayADT->_items[index];
+
+    if (!arrayADT) // NULL pointer is passed
+        printf("Error: Cannot get element from NULL ArrayADT.\n");
+    else if (index >= arrayADT->_length) // Index is out of array bounds
+        printf("Error: Index out of ArrayADT bounds.\n");
+
+    return ERROR_VALUE;
+}
+
+/* ########## DESTRUCTOR ########## */
+
+void freeArray(Array **arrayADT) {
+    if (!arrayADT || !(*arrayADT)) {
+        printf("Error: Cannot free NULL ArrayADT.\n");
+        return;
+    }
+
+    // Free the items array of arrayADT
+    if ((*arrayADT)->_items) {
+        free((*arrayADT)->_items);
+        (*arrayADT)->_items = NULL;   // Set items to NULL
+        (*arrayADT)->_size = 0;       // Set size to NULL
+        (*arrayADT)->_length = 0;     // Set length to NULL
+    }
+
+    free(*arrayADT);
+    *arrayADT = NULL;  // Set arrayADT to NULL
 }
