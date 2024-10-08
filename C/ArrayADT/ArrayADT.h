@@ -21,7 +21,8 @@ Array *copyArray(int arrayC[], unsigned int size, unsigned int length); // Const
 Array *copyArrayADT(Array *arrayADT, unsigned int length); // Array Copy Constructor
 
 // Operations
-int getArrayElement(Array *arrayADT, unsigned int index); 
+int getArrayElement(Array *arrayADT, unsigned int index);
+void setArrayElement(Array *arrayADT, unsigned int index, int value);
 void displayArray(Array *arrayADT);
 void appendArray(Array *arrayADT, int value);
 void extendArray(Array *arrayADT, Array *otherArray);

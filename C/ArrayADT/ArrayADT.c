@@ -165,6 +165,23 @@ int getArrayElement(Array *arrayADT, unsigned int index) {
     return ERROR_VALUE;
 }
 
+// Set an element in the array
+void setArrayElement(Array *arrayADT, unsigned int index, int value) {
+    // NULL pointer is passed
+    if (!arrayADT) {
+        printf("Error: Invalid operation. Cannot set element of a NULL ArrayADT.\n");
+        return;
+    }
+
+    // Index is out of array bounds
+    if (index >= arrayADT->_length) {
+        printf("Error INdex out of ArrayADT bounds.\n");
+        return;
+    }
+
+    arrayADT->_items[index] = value;
+}
+
 // Display all the elements in the array
 void displayArray(Array *arrayADT) {
     if (!arrayADT) {
