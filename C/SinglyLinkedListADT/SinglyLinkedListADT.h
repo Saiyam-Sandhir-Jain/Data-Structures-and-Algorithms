@@ -5,8 +5,8 @@
 
 // NodeADT Structure
 typedef struct SinglyLinkedListADT {
-    NodeADT *head;
-    unsigned int length;
+    NodeADT *_head;
+    unsigned int _length;
 } SinglyLLADT;
 
 // SinglyLLADT Properties

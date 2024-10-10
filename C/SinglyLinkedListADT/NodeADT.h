@@ -3,8 +3,8 @@
 
 // NodeADT Structure
 typedef struct NodeADT {
-    int value;
-    struct NodeADT *next;
+    int _value;
+    struct NodeADT *_next;
 } NodeADT;
 
 // NodeADT Properties

@@ -10,7 +10,7 @@
 // get value from NodeADt
 int getNodeADTValue(NodeADT *node) {
     if (node) {
-        return node->value;
+        return node->_value;
     }
     
     printf("Error: Cannot get value from NULL node.\n");
@@ -20,7 +20,7 @@ int getNodeADTValue(NodeADT *node) {
 // get next node from NodeADT
 NodeADT *getNodeADTNext(NodeADT *node) {
     if (node) {
-        return node->next;
+        return node->_next;
     }
 
     printf("Error: Cannot get next from NULL node.\n");
@@ -34,7 +34,7 @@ void setNodeADTValue(NodeADT *node, int value) {
         return;
     }
 
-    node->value = value;
+    node->_value = value;
 }
 
 // set next node for NodeADT
@@ -44,7 +44,7 @@ void setNodeADTNext(NodeADT *node, NodeADT *next) {
         return;
     }
 
-    node->next = next;
+    node->_next = next;
 }
 
 
@@ -57,7 +57,7 @@ void displayNodeADT(NodeADT * node) {
         return;
     }
 
-    printf("|%d|", node->value);
+    printf("|%d|", node->_value);
 }
 
 // ########## Constructors ##########
@@ -71,8 +71,8 @@ NodeADT *createDefaultNodeADT() {
         return NULL;
     }
 
-    node->value = 0;
-    node->next = NULL;
+    node->_value = 0;
+    node->_next = NULL;
 
     return node;
 }
@@ -86,8 +86,8 @@ NodeADT *createNodeADTWithValue(int value) {
         return NULL;
     }
 
-    node->value = value;
-    node->next = NULL;
+    node->_value = value;
+    node->_next = NULL;
 
     return node;
 }
@@ -101,8 +101,8 @@ NodeADT *createNodeADTWithValueAndNext(int value, NodeADT *next) {
         return NULL;
     }
 
-    node->value = value;
-    node->next = next;
+    node->_value = value;
+    node->_next = next;
 
     return node;
 }
@@ -120,8 +120,8 @@ NodeADT *createNodeADTCopy(NodeADT *node) {
         return NULL;
     }
 
-    nodeADT->value = node->value;
-    nodeADT->next = node->next;
+    nodeADT->_value = node->_value;
+    nodeADT->_next = node->_next;
 
     return nodeADT;
 }
@@ -135,8 +135,8 @@ void freeNodeADT(NodeADT **node) {
         return;
     }
 
-    (*node)->value = 0;
-    (*node)->next = NULL;
+    (*node)->_value = 0;
+    (*node)->_next = NULL;
     free((*node));
 
     *node = NULL;
