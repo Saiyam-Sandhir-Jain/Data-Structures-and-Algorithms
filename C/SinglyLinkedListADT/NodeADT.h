@@ -14,6 +14,7 @@ void setNodeADTADTValue(NodeADT *node, int value);   // value setter
 void setNodeADTNext(NodeADT *node, NodeADT *next);   // next setter
 
 // NodeADT Operations
+void displayNodeADT(NodeADT *node);
 
 // NodeADT Constructors
 NodeADT *createDefaultNodeADT();                                     // defalut constructor
