@@ -62,6 +62,7 @@ void displayNodeADT(NodeADT * node) {
 
 // ########## Constructors ##########
 
+// Default constructor
 NodeADT *createDefaultNodeADT() {
     NodeADT *node = (NodeADT *)malloc(sizeof(NodeADT));
 
@@ -76,6 +77,7 @@ NodeADT *createDefaultNodeADT() {
     return node;
 }
 
+// Parameterized Constructor: value
 NodeADT *createNodeADTWithValue(int value) {
     NodeADT *node = (NodeADT *)malloc(sizeof(NodeADT));
 
@@ -90,6 +92,7 @@ NodeADT *createNodeADTWithValue(int value) {
     return node;
 }
 
+// Parameterized Constructor: value, next
 NodeADT *createNodeADTWithValueAndNext(int value, NodeADT *next) {
     NodeADT *node = (NodeADT *)malloc(sizeof(NodeADT));
 
@@ -104,6 +107,7 @@ NodeADT *createNodeADTWithValueAndNext(int value, NodeADT *next) {
     return node;
 }
 
+// Copy constructor
 NodeADT *createNodeADTCopy(NodeADT *node) {
     if (!node) {
         return NULL;
@@ -120,4 +124,20 @@ NodeADT *createNodeADTCopy(NodeADT *node) {
     nodeADT->next = node->next;
 
     return nodeADT;
+}
+
+// ########## Destructor ##########
+
+// Free the space allocated for a node in the heap
+void freeNodeADT(NodeADT **node) {
+    if (!node || !(*node)) {
+        printf("Error: Cannot free a NULL node.\n");
+        return;
+    }
+
+    (*node)->value = 0;
+    (*node)->next = NULL;
+    free((*node));
+
+    *node = NULL;
 }
