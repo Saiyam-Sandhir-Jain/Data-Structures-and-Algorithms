@@ -1,33 +1,7 @@
 #ifndef SINGLYLINKEDLISTADT_H
 #define SINGLYLINKEDLISTADT_H
 
-// ########## NodeADT ADT ##########
-
-// NodeADT Structure
-typedef struct SinglyNodeADTADT {
-    int value;
-    struct SinglyNodeADTADT *next;
-} NodeADT;
-
-// NodeADT Properties
-int getNodeADTValue(NodeADT *node);                  // value getter
-NodeADT *getNodeADTNext(NodeADT *node);              // next getter
-void setNodeADTADTValue(NodeADT *node, int value);   // value setter
-void setNodeADTNext(NodeADT *node, NodeADT *next);   // next setter
-
-// NodeADT Operations
-
-// NodeADT Constructors
-NodeADT *createDefaultNodeADT();                                     // defalut constructor
-NodeADT *createNodeADTWithValue(int value);                          // parameterized constructor: value
-NodeADT *createNodeADTWithValueAndNext(int value, NodeADT *next);    // parameterized constructor: value, next
-NodeADT *createNodeADTCopy(NodeADT *node);                           // copy constructor
-
-// NodeADT Destructor
-void freeNodeADT(NodeADT **node);
-
-
-// ########## Singly Linked List ADT ##########
+#include "NodeADT.h"
 
 // NodeADT Structure
 typedef struct SinglyLinkedListADT {
