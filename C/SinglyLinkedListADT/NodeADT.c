@@ -47,3 +47,14 @@ void setNodeADTNext(NodeADT *node, NodeADT *next) {
     node->next = next;
 }
 
+
+// ########## Operations ##########
+
+void displayNodeADT(NodeADT * node) {
+    if (!node) {
+        printf("Error: Cannot display a NULL node.\n");
+        return;
+    }
+
+    printf("|%d|", node->value);
+}
