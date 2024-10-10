@@ -10,7 +10,7 @@ typedef struct NodeADT {
 // NodeADT Properties
 int getNodeADTValue(NodeADT *node);                  // value getter
 NodeADT *getNodeADTNext(NodeADT *node);              // next getter
-void setNodeADTADTValue(NodeADT *node, int value);   // value setter
+void setNodeADTValue(NodeADT *node, int value);   // value setter
 void setNodeADTNext(NodeADT *node, NodeADT *next);   // next setter
 
 // NodeADT Operations
