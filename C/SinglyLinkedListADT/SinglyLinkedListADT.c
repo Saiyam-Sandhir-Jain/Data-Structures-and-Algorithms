@@ -160,3 +160,29 @@ SinglyLLADT *createListCopy(SinglyLLADT *list) {
     copiedList->_length = list->_length;
     return copiedList;
 }
+
+// ########## Destructor ##########
+
+// Frees the memory associated with the list and all its nodes
+void freeList(SinglyLLADT **list) {
+    if (!list || !(*list)) {
+        printf("Error: Cannot free a NULL list.\n");
+        return;
+    }
+
+    // Free all nodes in the list
+    NodeADT *curr = (*list)->_head;
+    while (curr) {
+        NodeADT *temp = curr;
+        curr = curr->_next;
+        free(temp);
+    }
+
+    // Set list properties to default values
+    (*list)->_head = NULL;
+    (*list)->_length = 0;
+
+    // Free the list structure itself
+    free(*list);
+    *list = NULL;
+}
