@@ -50,6 +50,7 @@ void setNodeADTNext(NodeADT *node, NodeADT *next) {
 
 // ########## Operations ##########
 
+// Display the value of NodeADT
 void displayNodeADT(NodeADT * node) {
     if (!node) {
         printf("Error: Cannot display a NULL node.\n");
@@ -57,4 +58,66 @@ void displayNodeADT(NodeADT * node) {
     }
 
     printf("|%d|", node->value);
+}
+
+// ########## Constructors ##########
+
+NodeADT *createDefaultNodeADT() {
+    NodeADT *node = (NodeADT *)malloc(sizeof(NodeADT));
+
+    if (!node) {
+        printf("Error: error occurred during node creation.\n");
+        return NULL;
+    }
+
+    node->value = 0;
+    node->next = NULL;
+
+    return node;
+}
+
+NodeADT *createNodeADTWithValue(int value) {
+    NodeADT *node = (NodeADT *)malloc(sizeof(NodeADT));
+
+    if (!node) {
+        printf("Error: error occurred during node creation.\n");
+        return NULL;
+    }
+
+    node->value = value;
+    node->next = NULL;
+
+    return node;
+}
+
+NodeADT *createNodeADTWithValueAndNext(int value, NodeADT *next) {
+    NodeADT *node = (NodeADT *)malloc(sizeof(NodeADT));
+
+    if (!node) {
+        printf("Error: error occurred during node creation.\n");
+        return NULL;
+    }
+
+    node->value = value;
+    node->next = next;
+
+    return node;
+}
+
+NodeADT *createNodeADTCopy(NodeADT *node) {
+    if (!node) {
+        return NULL;
+    }
+    
+    NodeADT *nodeADT = (NodeADT *)malloc(sizeof(NodeADT));
+
+    if (!nodeADT) {
+        printf("Error: error occurred during node creation.\n");
+        return NULL;
+    }
+
+    nodeADT->value = node->value;
+    nodeADT->next = node->next;
+
+    return nodeADT;
 }
