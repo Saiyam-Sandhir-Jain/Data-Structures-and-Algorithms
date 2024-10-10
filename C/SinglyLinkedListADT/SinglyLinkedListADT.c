@@ -4,7 +4,7 @@
 #include "SinglyLinkedListADT.h"
 #include "NodeADT.h"
 
-#define ERROR_VALUE INT_MAX;  // Define a constant for returning error values
+#define ERROR_VALUE INT_MAX;
 
 // ########## Properties ##########
 
@@ -159,6 +159,128 @@ SinglyLLADT *createListCopy(SinglyLLADT *list) {
     // Set the length of the copied list
     copiedList->_length = list->_length;
     return copiedList;
+}
+
+// ########## Operations ##########
+int getListElement(SinglyLLADT *list, unsigned int index) {
+    if (!list) {
+        printf("Error: Cannot get element from a NULL list.\n");
+        return NULL;
+    }
+
+    if (index >= list->_length) {
+        printf("Error: index out of list bounds.\n");
+        return NULL;
+    }
+
+    NodeADT *curr = list->_head;
+    for (unsigned int i = 1; i <= index; ++i) {
+        curr = getNodeADTNext(curr);
+    }
+
+    return getNodeADTValue(curr);
+}
+
+void setListElement(SinglyLLADT *list, unsigned int index, int value) {
+    if (!list) {
+        printf("Error: Cannot set element value in a NULL list.\n");
+        return;
+    }
+
+    if (index >= list->_length) {
+        printf("Error: Index out of list bounds.\n");
+        return;
+    }
+
+    NodeADT *curr = list->_head;
+    for (unsigned int i = 1; i < list->_length; ++i) {
+        curr = getNodeADTNext(curr);
+    }
+
+    setNodeADTValue(curr, value);
+}
+
+void displayList(SinglyLLADT *list) {
+    if (!list) {
+        printf("Error: Cannot display a NULL list.\n");
+        return;
+    }
+
+    NodeADT *curr = list->_head;
+    while (curr) {
+        displayNodeADT(curr);
+        printf("->");
+    }
+    printf("NULL");
+}
+
+void appendList(SinglyLLADT *list, int value) {
+    if (!list) {
+        printf("Error: Cannot append to a NULL list.\n");
+        return;
+    }
+
+    NodeADT *newNode = createNodeADTWithValue(value);
+    if (!newNode) {
+        printf("Error: Error occurred during node creation.\n");
+        return;
+    }
+
+    NodeADT *curr = list->_head;
+    while (curr->_next) {
+        curr = getNodeADTNext(curr);
+    }
+
+    curr->_next = newNode;
+}
+
+void insertList(SinglyLLADT *list, unsigned int index, int value) {
+    if (!list) {
+        printf("Error: Cannot insert to a NULL list.\n");
+        return;
+    }
+
+    if (index > list->_length) {
+        printf("Error: Index out of list bounds.\n");
+        return;
+    }
+
+    NodeADT *newNode = createNodeADTWithValue(value);
+    if (index == 0) {
+        setNodeADTNext(newNode, list->_head);
+    }
+
+    NodeADT *curr = list->_head;
+    for (unsigned int i = 1; i < index; ++i) {
+        setNodeADTNext(curr, getNodeADTNext(curr));
+    }
+
+    NodeADT *temp = getNodeADTNext(curr);
+    setNodeADTNext(curr, newNode);
+    setNodeADTNext(newNode, temp);
+}
+
+int popList(SinglyLLADT *list) {
+    if (!list) {
+        printf("Error: Cannot pop from a NULL list.\n");
+        return ERROR_VALUE;
+    }
+
+    if (isEmpty(list)) {
+        printf("Error: Cannot pop from an empty list.\n");
+        return ERROR_VALUE;
+    }
+
+    NodeADT *curr = list->_head;
+    while (getNodeADTNext(curr)) {
+        setNodeADTNext(curr, getNodeADTNext(curr));
+    }
+
+    int poppedValue = getNodeADTValue(curr);
+    freeNodeADT(&curr);
+    list->_length--;
+
+    return poppedValue;
 }
 
 // ########## Destructor ##########

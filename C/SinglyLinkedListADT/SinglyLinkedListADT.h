@@ -1,6 +1,7 @@
 #ifndef SINGLYLINKEDLISTADT_H
 #define SINGLYLINKEDLISTADT_H
 
+#include <stdbool.h>
 #include "NodeADT.h"
 
 // NodeADT Structure
