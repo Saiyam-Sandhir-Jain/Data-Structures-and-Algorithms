@@ -283,6 +283,58 @@ int popList(SinglyLLADT *list) {
     return poppedValue;
 }
 
+int removeListElement(SinglyLLADT *list, unsigned int index)
+{
+    if (!list) {
+        printf("Error: Cannot remove from a NULL list.\n");
+        return ERROR_VALUE;
+    }
+
+    if (index >= list->_length) {
+        printf("Error: Index out of list bounds.\n");
+        return ERROR_VALUE;
+    }
+
+    NodeADT *curr = list->_head;
+    for (unsigned int i = 1; i < index; ++i) {
+        setNodeADTNext(curr, getNodeADTNext(curr));
+    }
+    NodeADT *temp = getNodeADTNext(curr);
+    int removedValue = getNodeADTValue(temp);
+    setNodeADTNext(curr, getNodeADTNext(temp));
+    freeNodeADT(&temp);
+    list->_length--;
+
+    return temp;
+}
+
+unsigned int linearSearchList(SinglyLLADT *list, int value) {
+    if (!list) {
+        printf("Error: Cannot search a NULL list.\n");
+        return ERROR_VALUE;
+    }
+
+    NodeADT *curr = list->_head;
+    for (unsigned int i = 0; i < list->_length; ++i) {
+        if (getNodeADTValue(curr) == value) {
+
+        }
+    }
+}
+
+bool isEmpty(SinglyLLADT *list) {
+    if (!list) {
+        printf("Error: Cannot check a NULL list.\n");
+        return false;
+    }
+
+    if (!list->_head && list->_length == 0) {
+        return true;
+    }
+
+    return false;
+}
+
 // ########## Destructor ##########
 
 // Frees the memory associated with the list and all its nodes
